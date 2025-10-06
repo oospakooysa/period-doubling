@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "From Oscillators to Chaos: A Deep Dive into Period Doubling"
+title: "From Oscillators to Chaos: A Deep Dive into Period-doubling"
 date: 2025-09-29
 tags: [physics, chaos, nonlinear]
 ---
 
-# From Oscillators to Chaos: A Deep Dive into Period Doubling
+# From Oscillators to Chaos: A Deep Dive into Period-doubling
 
-This post expands on the material in my [period doubling site](https://oospakooysa.github.io/period-doubling/), drawing from extended worked examples, figures, and simulations. It’s aimed at readers who want to dig deeper into the physics, coding, and data behind nonlinear oscillators and chaos.
+This post expands on the material in my [period-doubling site](https://oospakooysa.github.io/period-doubling/), drawing from extended worked examples, figures, and simulations. It’s aimed at readers who want to dig deeper into the physics, coding, and data behind nonlinear oscillators and chaos.
 
 ---
 
@@ -70,13 +70,9 @@ Finally, we compared numerical solutions directly against the analytical small-a
 For fine step sizes (Δt = 0.01), the agreement is excellent.  
 But for coarser timesteps, numerical error grows dramatically — reaching about **54% error**.
 
-| <img src="{{ site.baseurl }}/images/verification_exact01.png" alt="Verification by exact measurement (error percentage)" width="80%"> |
-|-----------------------------------------------------------------------------------------------------------------------------------|
-| *Verification by Exact Measurement – Numerical solution shows ~54% error at large Δt compared to the analytical solution.* |
-
-| <img src="{{ site.baseurl }}/images/verification_exact02.png" alt="Verification by exact measurement (error percentage)" width="80%"> |
-|-----------------------------------------------------------------------------------------------------------------------------------|
-| *Verification by Exact Measurement – Numerical solution shows ~54% error at large Δt compared to the analytical solution.* |
+| <img src="{{ site.baseurl }}/images/verification_exact01.png" alt="Verification by exact measurement (error percentage)" width="80%"> | <img src="{{ site.baseurl }}/images/verification_exact02.png" alt="Verification by exact measurement (error percentage)" width="80%"> |
+|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| *Verification by Exact Measurement – Numerical solution shows minimal error at small Δt compared to the analytical solution.* | *Verification by Exact Measurement – Numerical solution shows ~54% error at large Δt compared to the analytical solution.* |
 
 **Takeaway:** With careful solver choice and step size, our tools reproduce real physics accurately.  
 This gives us confidence to apply them to nonlinear and chaotic systems in later sections.
@@ -539,7 +535,7 @@ Chaos here is not just abstract mathematics: it is something riders feel in thei
 
 ## 7. Chaos and Beyond
 
-Beyond period doubling, nonlinear systems reveal even more complex behaviour.  
+Beyond Period-doubling, nonlinear systems reveal even more complex behaviour.  
 One striking feature is the **jump phenomenon**, where nonlinear resonance causes sudden amplitude shifts as system parameters change.  
 
 To visualise the broader landscape, we use **bifurcation diagrams**, which map regions of stability, doubling, and chaos in a single view.
@@ -556,7 +552,7 @@ To visualise the broader landscape, we use **bifurcation diagrams**, which map r
 ---
 
 **Summary:**  
-Period doubling is only one path into chaos. Nonlinear systems can jump, wander, and mix stability with unpredictability, creating a rich and intricate dynamical landscape.
+Period-doubling is only one path into chaos. Nonlinear systems can jump, wander, and mix stability with unpredictability, creating a rich and intricate dynamical landscape.
 
 ---
 
@@ -566,7 +562,7 @@ The journey from simple oscillations to chaos reveals a universal story in nonli
 Through successive bifurcations, stable motion doubles in complexity until it becomes chaotic — a process governed by the **Feigenbaum constant** (δ ≈ 4.669).  
 This constant is not just a mathematical curiosity but a marker of universality: it appears in many different systems, from equations on paper to machines in motion.
 
-In the controlled setting of simulations, period doubling highlights the elegance of nonlinear mathematics.  
+In the controlled setting of simulations, Period-doubling highlights the elegance of nonlinear mathematics.  
 But in real-world systems — like the **SkyMaster ride** — these same dynamics carry direct consequences.  
 As the drive grows, oscillations amplify, g-forces spike, and motion slips into **rolling chaotic motion**.  
 At this stage, prediction and control become unreliable, and what begins as an abstract route to chaos becomes a **safety challenge** for engineering.
@@ -574,7 +570,7 @@ At this stage, prediction and control become unreliable, and what begins as an a
 > **Key message:** Chaos is not only a mathematical destination but also a human experience.  
 > The Feigenbaum constant links theory to practice, showing how universal dynamics shape both the behaviour of equations and the safety of rides.
 
-Ultimately, studying period doubling gives us two perspectives:  
+Ultimately, studying Period-doubling gives us two perspectives:  
 - A **theoretical lens**, where universality and constants reveal the hidden order of chaos.  
 - A **practical lens**, where oscillations and g-forces remind us that real systems — and real people — live with the consequences of nonlinear motion.
 

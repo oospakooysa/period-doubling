@@ -154,6 +154,8 @@ Simulation shows the textbook case:
   - **Period = 6.28 s**
   - **Frequency = 0.158 Hz**
 
+---
+
 > **Summary**: The linear oscillator produces clean sinusoidal motion with a fixed period, independent of amplitude.
 
 ---
@@ -177,6 +179,8 @@ Results:
 - Velocity range: **~0 to 1.4** (slightly reduced compared to linear ~0 to 1.5).
 - Lower velocity → **longer period** than the linear case.
 
+---
+
 > **Summary**: The soft spring stretches the oscillation period and introduces harmonics.
 
 ---
@@ -199,6 +203,8 @@ Results:
 - **Spectrum:** higher harmonics appear strongly.
 - **shorter period**.
 - Velocity and frequency are both **greater** than in the linear case.
+
+---
 
 > **Summary**: The hard spring compresses the oscillation period and introduces harmonics.
 
@@ -319,6 +325,8 @@ The results show the transition from periodic motion to subharmonics and eventua
 |-------------------------|-------------------------|
 | *High forcing — time series: irregular oscillations.* | *High forcing — phase plane: chaotic attractor.* |
 
+---
+
 > **Summary:**
 > - Low forcing → clean periodic motion.
 > - Moderate forcing → subharmonics and irregular loops.
@@ -363,6 +371,8 @@ At low driving strength, the system exhibits **simple periodic motion**: the osc
 - **Spectrum**: Dominated by the fundamental frequency.
 - **Return map**: One fixed point.
 
+---
+
 > **Summary**: The system is stable and repeats identically each cycle.
 
 ---
@@ -382,6 +392,8 @@ Increasing the drive produces the first **bifurcation**: oscillations alternate 
 - **Spectrum**: Peaks appear at half the fundamental frequency.
 - **Return map**: Two distinct points.
 
+---
+
 > **Summary**: The first doubling — the system now needs two cycles to repeat.
 
 ---
@@ -399,6 +411,8 @@ Further increase in driving strength leads to another bifurcation: **Period-4 mo
 - **Time series**: Four distinct amplitudes before repeating.
 - **Phase plane**: Four interwoven loops.
 - **Spectrum**: New subharmonics appear.
+
+---
 
 > **Summary**: The doubling continues — repetition now requires four cycles.
 
@@ -418,6 +432,8 @@ At even stronger drive, the system exhibits **Period-8 behaviour**, the last sta
 - **Phase plane**: Eight-fold structure in the trajectory.
 - **Spectrum**: A dense cluster of peaks, precursors to chaos.
 - **Return map**: Eight visited points.
+
+---
 
 > **Summary**: With repetition stretched to eight cycles, the system is on the verge of chaos.
 
@@ -472,9 +488,12 @@ Oscillations are smooth, regular, and close to sinusoidal.
 | *SkyMaster — low amplitude: smooth sinusoidal motion.* | *SkyMaster — higher amplitude: beginning of nonlinearity.* |
 
 - **Low amplitude**: Periodic motion with a clear repeating cycle.
-- - **Higher amplitude:** Oscillations deviate from pure sinusoidal form, marking the onset of nonlinear behaviour.
+- **Higher amplitude:** Oscillations deviate from pure sinusoidal form, marking the onset of nonlinear behaviour.
 
-> **Summary**: At low drive, the SkyMaster is stable and predictable, with forces well within safe limits.
+---
+
+> **Summary**:
+> At low drive, the SkyMaster is stable and predictable, with forces well within safe limits.
 
 ---
 
@@ -511,6 +530,8 @@ For amplitude \(A = 4.0\):
 > **Safety note:** This is *far beyond* normal human tolerance (amusement rides typically remain well under 5 G).
 > Once nonlinear oscillations grow, the ride risks producing unsafe forces.
 
+---
+
 > **Summary:** Strong nonlinearity drives forces outside safe margins, making design safeguards essential.
 
 ---
@@ -527,7 +548,9 @@ Instead of smooth oscillations, the ride enters a state of **rolling chaotic mot
 - **Onset of chaos:** Motion turns aperiodic, sensitive to small differences in starting conditions.
 - **Rolling chaotic motion**: Large, irregular swings dominate, making long-term prediction impossible.
 
-> **Summary**: **Summary:** At high drive, the SkyMaster becomes chaotic. Control is difficult and rider safety risks increase.
+---
+
+> **Summary**: At high drive, the SkyMaster becomes chaotic. Control is difficult and rider safety risks increase.
 
 ---
 
@@ -558,7 +581,7 @@ To visualise the broader landscape, we use **bifurcation diagrams**, which map r
 
 ---
 
-**Summary:**
+> **Summary:**
 Period-doubling is only one path into chaos. Nonlinear systems can jump, wander, and mix stability with unpredictability, creating a rich and intricate dynamical landscape.
 
 ---

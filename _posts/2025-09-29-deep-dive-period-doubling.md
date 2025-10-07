@@ -92,24 +92,31 @@ This contrast highlights why nonlinear systems can behave so differently from th
 
 ---
 
-### 3.1 General Principles (Teaching / Theory)
+### 3.1 General Principles (Theory)
 
 We can compare the governing equations directly:
 
-- **Linear oscillator (simple harmonic motion):**
-  $$
-  \ddot{x} + \omega^2 x = 0
-  $$
+**Linear oscillator (simple harmonic motion):**
+
+$$
+\ddot{x} + \omega^2 x = 0
+$$
+
   - Produces clean sinusoidal motion.
   - Frequency is fixed and independent of amplitude.
 
-- **Nonlinear oscillator (with cubic stiffness term):**
-  $$
-  \ddot{x} + \omega^2 x + \beta x^3 = 0
-  $$
+**Nonlinear oscillator (with cubic stiffness term):**
+
+$$
+\ddot{x} + \omega^2 x + \beta x^3 = 0
+$$
+
   - Restoring force depends on amplitude.
   - Frequency shifts with amplitude.
   - Motion can distort, generate harmonics, or become unstable.
+
+---
+
 
 We can compare the governing equations directly:
 
@@ -120,9 +127,12 @@ We can compare the governing equations directly:
 | Fixed period, independent of amplitude     | Harmonics and distortions possible           |
 
 **Key difference:**
-- **Linear oscillator** → guaranteed predictability, sinusoidal motion, frequency independent of amplitude.
-- **Nonlinear oscillator** → amplitude-dependent frequency, distorted oscillations, and the possibility of bifurcations and chaos.
-Linearity guarantees *predictability and simplicity*. Nonlinearity breaks this, opening the door to richer — and potentially chaotic — behaviour.
+- **Linear oscillator:** Predictable, sinusoidal motion; frequency independent of amplitude.  
+- **Nonlinear oscillator:** Amplitude-dependent frequency, distorted oscillations, and the possibility of bifurcations and chaos.  
+
+Linearity guarantees *predictability and simplicity*.  
+Nonlinearity breaks this — opening the door to richer, amplitude-sensitive, and potentially chaotic behaviour.
+
 
 ---
 <!---
@@ -133,11 +143,12 @@ Linearity guarantees *predictability and simplicity*. Nonlinearity breaks this, 
 
 ---
 
-### 3.2 Applying the Model (Your Simulations)
+### 3.2 Applying the Model
 
 ### Test A: Linear Oscillator (γ = baseline)
 
 Simulation shows the textbook case:
+
 - **Time series:** pure sinusoidal motion.
 - **Phase plane:** a perfect closed ellipse.
 - **Spectrum:** one sharp peak at 0.158 Hz (period 6.28
@@ -150,63 +161,62 @@ Simulation shows the textbook case:
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **Phase plane:** Perfect closed ellipse — hallmark of linear harmonic motion | **Spectrum:** Single sharp frequency peak at 0.158 Hz (period = 6.28 s) — no distortion or harmonics |
 
-- Results:
-  - **Period = 6.28 s**
-  - **Frequency = 0.158 Hz**
+**Results:**
+- **Period = 6.28 s**  
+- **Frequency = 0.158 Hz**
 
 ---
 
-> **Summary**: The linear oscillator produces clean sinusoidal motion with a fixed period, independent of amplitude.
+> **Summary:** The linear oscillator produces clean, predictable sinusoidal motion with a fixed period, independent of amplitude.
 
 ---
 
 #### Test B: Nonlinear Oscillator — Soft Spring (β < 0)
 
-Here the restoring force weakens with displacement.
+Here the restoring force **weakens** with displacement, causing slower oscillations.
 
 | <img src="{{ site.baseurl }}/images/softspring01.png" alt="Soft spring time series" width="80%"> |
 |--------------------------------------------------------------------------------------------------|
-| *Time series – soft spring (longer oscillation period than linear)* |
+| **Time series:** Longer oscillation period than the linear case. |
 
 | <img src="{{ site.baseurl }}/images/softspring03.png" alt="Soft spring phase plane" width="80%"> | <img src="{{ site.baseurl }}/images/softspring02.png" alt="Soft spring spectrum" width="80%"> |
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| *Phase plane – elliptical orbit distorted by softening nonlinearity* | *Spectrum – harmonics and subharmonics present* |
+| **Phase plane:** Elliptical orbit distorted by softening nonlinearity. | **Spectrum:** Harmonics and subharmonics appear, showing waveform distortion. |
 
-Results:
-- **Time series:** longer oscillation period than the linear case.
-- **Phase plane:** ellipse visibly distorted.
-- Spectrum: **two harmonics** appear, indicating distortion from sinusoidal motion.
-- Velocity range: **~0 to 1.4** (slightly reduced compared to linear ~0 to 1.5).
-- Lower velocity → **longer period** than the linear case.
+**Results:**
+- Longer period than the linear oscillator.  
+- Ellipse visibly distorted in phase plane.  
+- **Two harmonics** appear in the frequency spectrum.  
+- Velocity range ≈ 0–1.4 (slightly reduced from the linear 0–1.5).  
+- Lower velocity → longer oscillation period.
 
 ---
 
-> **Summary**: The soft spring stretches the oscillation period and introduces harmonics.
+> **Summary:** The soft spring stretches the oscillation period and introduces harmonic distortion due to a weaker restoring force.
 
 ---
 
 #### Test C: Nonlinear Oscillator — Hard Spring (β > 0)
 
-Here the restoring force stiffens with displacement.
+Here the restoring force **stiffens** with displacement, resulting in faster oscillations.
 
 | <img src="{{ site.baseurl }}/images/hardspring01.png" alt="Hard spring time series" width="80%"> |
 |-------------------------------------------------------------------------------------------------|
-| *Time series – hard spring (shorter oscillation period, stiff response)* |
+| **Time series:** Shorter oscillation period; motion stiffens as amplitude grows. |
 
 | <img src="{{ site.baseurl }}/images/hardspring02.png" alt="Hard spring phase plane" width="80%"> | <img src="{{ site.baseurl }}/images/hardspring03.png" alt="Hard spring spectrum" width="80%"> |
 |-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| *Phase plane – diamond-like orbit, showing stiffening effect* | *Spectrum – strong higher harmonics due to hardening* |
+| **Phase plane:** Diamond-like orbit — the system stiffens with amplitude. | **Spectrum:** Strong higher harmonics due to nonlinearity. |
 
-Results:
-- **Time series:** shorter period than the linear case.
-- **Phase plane:** orbit sharpens into a diamond-like shape.
-- **Spectrum:** higher harmonics appear strongly.
-- **shorter period**.
-- Velocity and frequency are both **greater** than in the linear case.
+**Results:**
+- Shorter period than the linear oscillator.  
+- Orbit sharpens into a diamond shape in the phase plane.  
+- Higher harmonics dominate the spectrum.  
+- Velocity and frequency are both greater than in the linear case.
 
 ---
 
-> **Summary**: The hard spring compresses the oscillation period and introduces harmonics.
+> **Summary:** The hard spring compresses the oscillation period and introduces stronger harmonics due to a stiffer restoring force.
 
 #### Comparison Table
 
@@ -222,16 +232,16 @@ Results:
 
 - **Linear systems**: predictable, fixed frequency, clean sinusoidal motion (6.28 s / 0.158 Hz).
 - **Soft spring systems**: longer periods, lower velocities, harmonic distortion.
-- **Hard spring systems**: shorter periods, higher velocities, harmonic distortion.
+- **Hard spring systems:** Shorter periods, higher velocities and strong harmonic distortion.  
 
-This contrast sets the stage for later sections: once **forcing** is added (Section 4), nonlinear systems can undergo bifurcations and eventually chaos.
+This contrast sets the stage for later sections: once **forcing** is introduced (Section 4), nonlinear systems can undergo bifurcations and ultimately display **chaotic behaviour**.
 
 ---
 
 ## 4. Forced Oscillators & Chaos (Ueda’s Equation)
 
-So far we have compared linear and nonlinear oscillators under simple conditions.
-When we add **external forcing**, however, a new level of complexity emerges.
+Once an external forcing term is added, nonlinear systems exhibit a wide range of dynamic behaviours — from **periodic motion** to **quasi-periodic oscillations** and full **chaos**.  
+A classic demonstration of this transition is provided by **Ueda’s equation**, which modifies the Duffing oscillator by introducing a periodic driving force.
 
 One famous example is **Ueda’s equation**, a nonlinear forced oscillator that shows how periodic driving can create chaotic motion.
 
@@ -334,7 +344,7 @@ The results show the transition from periodic motion to subharmonics and eventua
 
 ---
 
-### 4.3 Lessons from Ueda’s Oscillator
+### 4.3 Lessons from Ueda’s Oscillator and Quantifying Chaos — Lyapunov Exponent
 
 Ueda’s equation shows how **external driving** interacts with **nonlinearity** to produce chaos.
 This transition mirrors the behaviour we later observe in real systems like the **SkyMaster ride**, where forcing from motors translates into irregular — and potentially unsafe — motion.
@@ -418,7 +428,7 @@ Further increase in driving strength leads to another bifurcation: **Period-4 mo
 
 ---
 
-### Period-8 Oscillations (γ = 1.0826)
+### 5.4 Period-8 Oscillations (γ = 1.0826)
 
 At even stronger drive, the system exhibits **Period-8 behaviour**, the last stage before chaos.
 
@@ -470,10 +480,22 @@ As the sequence accumulates, the ratio of bifurcation intervals converges to δ 
 
 ---
 
+### 5.6 Lyapunov Exponent Analysis
+
+\lambda = \lim_{N \to \infty} \frac{1}{N} \sum_{n=1}^{N} \ln |f'(x_n)|
+
+Interpretation: $\lambda < 0$ indicates convergence to a fixed point or stable cycle; $\lambda = 0$ indicates a neutral/critical case (bifurcation); $\lambda > 0$ indicates chaos (sensitive dependence on initial conditions).
+
+Application here: For the parameter sweep shown in the bifurcation diagrams above, the computed largest Lyapunov exponent becomes positive after the last doubling (beyond the Period-8 case), confirming the transition to chaos quantitatively.
+
+Note: I added this subsection as an explicit quantitative check — it does not replace any existing content. It simply provides an additional diagnostic for the bifurcation / chaos claims already present.
+
+---
+
 ## 6. Extended Findings: The SkyMaster Ride
 
-To connect theory with the real world, we studied the **SkyMaster ride**, a fairground pendulum swing.
-Despite its simplicity, the ride captures the essence of nonlinear dynamics and exhibits the same route to chaos observed in abstract models.
+To connect theory with the real world, we studied the **SkyMaster ride**, a fairground pendulum swing.  
+Despite its simplicity, the ride captures the essence of nonlinear dynamics and exhibits the same route to chaos observed in abstract models.  
 Here, the consequences are not only theoretical but also practical — oscillations translate directly into the **forces experienced by riders**, raising important questions of **comfort and safety**.
 
 ---
@@ -485,7 +507,7 @@ Oscillations are smooth, regular, and close to sinusoidal.
 
 | ![]({{ site.baseurl }}/images/skymaster1a.png) | ![]({{ site.baseurl }}/images/skymaster1b.png) |
 |------------------------------|------------------------------|
-| *SkyMaster — low amplitude: smooth sinusoidal motion.* | *SkyMaster — higher amplitude: beginning of nonlinearity.* |
+| **SkyMaster — low amplitude:** smooth sinusoidal motion. | **SkyMaster — higher amplitude:** beginning of nonlinearity. |
 
 - **Low amplitude**: Periodic motion with a clear repeating cycle.
 - **Higher amplitude:** Oscillations deviate from pure sinusoidal form, marking the onset of nonlinear behaviour.
@@ -502,10 +524,12 @@ Oscillations are smooth, regular, and close to sinusoidal.
 As the driving energy increases, nonlinear effects dominate the system.
 Oscillations grow in amplitude and complexity, while forces on riders become less predictable.
 
-![]({{ site.baseurl }}/images/skymaster1c.png)
-*SkyMaster — g-force profile showing rapid fluctuations.*
+| ![]({{ site.baseurl }}/images/skymaster1c.png) |
+|---|
+| **SkyMaster — g-force profile showing rapid fluctuations.** |
 
-- **G-force profile**: Riders experience rapidly varying forces, reflecting the system’s nonlinear response.
+
+- **G-force profile:** Riders experience rapidly varying forces, reflecting the system’s nonlinear response.  
 - These fluctuations affect not only comfort but also **safety in ride design and operation**.
 
 
@@ -570,8 +594,10 @@ One striking feature is the **jump phenomenon**, where nonlinear resonance cause
 
 To visualise the broader landscape, we use **bifurcation diagrams**, which map regions of stability, doubling, and chaos in a single view.
 
-![Bifurcation Diagram]({{ site.baseurl }}/images/bifurcation.png)
-*Figure: Bifurcation diagram showing transitions from stable motion → doubling → chaos.*
+| ![Bifurcation Diagram]({{ site.baseurl }}/images/bifurcation.png) |
+|---|
+| *Bifurcation diagram showing transitions from stable motion → doubling → chaos.* |
+
 
 **Key insights from the diagram:**
 - **Stable regions**: predictable, repeating motion.

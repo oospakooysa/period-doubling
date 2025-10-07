@@ -37,10 +37,6 @@ We modelled the ride in Octave and observed both the **velocity** and **displace
 
 $$ h_1 = \frac{mg}{B} \cdot h_2 $$
 
-$$
-h₁ = \frac{mg}{B} \cdot h₂
-$$
-
 Graphs of velocity and acceleration confirm when braking occurs (~10.2s) and how deceleration peaks.
 
 | ![Apocalypse Ride Velocity]({{ site.baseurl }}/images/apocalypse_velocity.png) | ![Apocalypse Ride Acceleration]({{ site.baseurl }}/images/apocalypse_accel.png) |

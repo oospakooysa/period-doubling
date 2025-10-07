@@ -125,11 +125,11 @@ We can compare the governing equations directly:
 Linearity guarantees *predictability and simplicity*. Nonlinearity breaks this, opening the door to richer — and potentially chaotic — behaviour.
 
 ---
-
+<!---
 ![Placeholder: Linear vs Nonlinear equations side-by-side]({{ site.baseurl }}/images/linear_vs_nonlinear.png)
 
 *Figure: Conceptual comparison of the linear and nonlinear governing equations. The nonlinear case adds the cubic stiffness term, breaking superposition and introducing amplitude-dependent dynamics.*
-
+--->
 
 ---
 
@@ -432,8 +432,9 @@ The intervals between bifurcations shrink geometrically, converging toward the *
 The doubling process accelerates rapidly:
 
 $$
-\text{Period-1} \;\;\to\;\; \text{Period-2} \;\;\to\;\; \text{Period-4} \;\;\to\;\; \text{Period-8} \;\;\to\;\; \dots
+\small \text{Period-1} \to \text{Period-2} \to \text{Period-4} \to \text{Period-8} \to \dots
 $$
+
 
 The intervals between bifurcations shrink geometrically, converging toward the **Feigenbaum constant**:
 

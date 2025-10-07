@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "From Oscillators to Chaos: A Deep Dive into Period-doubling"
+title: "From Oscillators to Chaos: A Deep Dive into Period-Doubling"
 date: 2025-09-29
 tags: [physics, chaos, nonlinear]
 ---
@@ -16,11 +16,11 @@ This post expands on the material in my [period-doubling site](https://oospakooy
 Period-doubling bifurcations provide one of the cleanest routes to chaos. Starting with simple oscillators, we’ll explore how gradually adding nonlinearity, forcing, and amplitude changes drive systems from predictable motion into chaotic behaviour.  
 
 To keep things grounded, we will use:  
-- **real-world analogies** (fairground rides, suspension systems),  
-- **Octave code and simulations**, and  
-- **plots and diagrams** that make the transition into chaos visible.
+- **Real-world analogies** — such as fairground rides and suspension systems — to link theory to intuition.
+- **Octave code and numerical simulations** to verify physical accuracy.  
+- **Plots and bifurcation diagrams** that make the transition into chaos visible step-by-step.  
 
-The goal is to show how a path that begins with simple, predictable motion eventually unfolds into the rich — and sometimes dangerous — dynamics of chaos.
+The goal is to show how a path that begins with simple, predictable motion eventually unfolds into the rich — and sometimes dangerous — dynamics of chaos, where tiny parameter shifts can produce radically different outcomes.
 
 
 ---
@@ -30,14 +30,12 @@ The goal is to show how a path that begins with simple, predictable motion event
 Before diving into chaos, we first **verify** our tools.
 
 ### 2.1 The Apocalypse Ride
-A 1D dynamic system, where a car free-falls from 54 m before braking at ~6 m.
-We modelled the ride in Octave, observing the velocity and displacement over time.
+A one-dimensional dynamic system in which a car free-falls from **54 m** before braking at approximately **6 m** above the ground.  
+We modelled the ride in Octave and observed both the **velocity** and **displacement** over time.
 
 *Key insight:* The braking distance relates to gravitational force via:
 
-```
-h₁ = (mg / B) * h₂
-```
+$$ h_1 = \frac{mg}{B} \cdot h_2 $$
 
 $$
 h₁ = \frac{mg}{B} \cdot h₂
@@ -48,6 +46,9 @@ Graphs of velocity and acceleration confirm when braking occurs (~10.2s) and how
 | ![Apocalypse Ride Velocity]({{ site.baseurl }}/images/apocalypse_velocity.png) | ![Apocalypse Ride Acceleration]({{ site.baseurl }}/images/apocalypse_accel.png) |
 |---|---|
 | *Velocity vs. time — steady fall, then braking.* | *Acceleration vs. time — deceleration peak.* |
+
+**Interpretation:**  
+The numerical model captures both the free-fall (from 54 m) and braking (around 6 m) phases accurately, validating the solver and physical parameters before moving on to more complex nonlinear cases.
 
 ---
 
@@ -66,16 +67,25 @@ Validation against experimental data showed errors < 10%, confirming the model.
 ---
 
 ### 2.3 Exact Verification (Analytical vs Numerical)
-Finally, we compared numerical solutions directly against the analytical small-angle pendulum.  
-For fine step sizes (Δt = 0.01), the agreement is excellent.  
-But for coarser timesteps, numerical error grows dramatically — reaching about **54% error**.
+Finally, we compared the **numerical** solution of the small-angle pendulum directly against the **analytical** one.  
+For fine step sizes ($\Delta t = 0.01$), the agreement is excellent; the numerical curve tracks the analytical result almost exactly.  
+At larger steps ($\Delta t = 0.5$), however, numerical error grows dramatically — reaching about **54 %**.
 
 | <img src="{{ site.baseurl }}/images/verification_exact01.png" alt="Verification by exact measurement (error percentage)" width="80%"> | <img src="{{ site.baseurl }}/images/verification_exact02.png" alt="Verification by exact measurement (error percentage)" width="80%"> |
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| *Verification by Exact Measurement – Numerical solution shows minimal error at small Δt compared to the analytical solution.* | *Verification by Exact Measurement – Numerical solution shows ~54% error at large Δt compared to the analytical solution.* |
+| **Small time step (Δt = 0.01)** — minimal error, closely matches analytical solution. | **Large time step (Δt = 0.5)** — error ≈ 54 %, showing instability from coarse integration. |
 
-**Takeaway:** With careful solver choice and step size, our tools reproduce real physics accurately.  
-This gives us confidence to apply them to nonlinear and chaotic systems in later sections.
+```text
+Error (%) = |xₙ − xₐ| / |xₐ| × 100
+```
+
+$$
+\text{Error (\%)} = \frac{|x_{\text{numerical}} - x_{\text{analytical}}|}{|x_{\text{analytical}}|} \times 100
+$$
+
+**Takeaway:** 
+With careful solver choice and step size, our numerical tools reproduce real physics accurately.
+This verification step builds confidence before applying the same methods to nonlinear and chaotic systems in later sections.
 
 ---
 

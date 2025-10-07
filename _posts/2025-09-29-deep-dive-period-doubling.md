@@ -13,12 +13,12 @@ This post expands on the material in my [period-doubling site](https://oospakooy
 
 ## 1. Introduction
 
-Period-doubling bifurcations provide one of the cleanest routes to chaos. Starting with simple oscillators, we’ll explore how gradually adding nonlinearity, forcing, and amplitude changes drive systems from predictable motion into chaotic behaviour.  
+Period-doubling bifurcations provide one of the cleanest routes to chaos. Starting with simple oscillators, we’ll explore how gradually adding nonlinearity, forcing, and amplitude changes drive systems from predictable motion into chaotic behaviour.
 
-To keep things grounded, we will use:  
+To keep things grounded, we will use:
 - **Real-world analogies** — such as fairground rides and suspension systems — to link theory to intuition.
-- **Octave code and numerical simulations** to verify physical accuracy.  
-- **Plots and bifurcation diagrams** that make the transition into chaos visible step-by-step.  
+- **Octave code and numerical simulations** to verify physical accuracy.
+- **Plots and bifurcation diagrams** that make the transition into chaos visible step-by-step.
 
 The goal is to show how a path that begins with simple, predictable motion eventually unfolds into the rich — and sometimes dangerous — dynamics of chaos, where tiny parameter shifts can produce radically different outcomes.
 
@@ -30,7 +30,7 @@ The goal is to show how a path that begins with simple, predictable motion event
 Before diving into chaos, we first **verify** our tools.
 
 ### 2.1 The Apocalypse Ride
-A one-dimensional dynamic system in which a car free-falls from **54 m** before braking at approximately **6 m** above the ground.  
+A one-dimensional dynamic system in which a car free-falls from **54 m** before braking at approximately **6 m** above the ground.
 We modelled the ride in Octave and observed both the **velocity** and **displacement** over time.
 
 *Key insight:* The braking distance relates to gravitational force via:
@@ -43,7 +43,7 @@ Graphs of velocity and acceleration confirm when braking occurs (~10.2s) and how
 |---|---|
 | *Velocity vs. time — steady fall, then braking.* | *Acceleration vs. time — deceleration peak.* |
 
-**Interpretation:**  
+**Interpretation:**
 The numerical model captures both the free-fall (from 54 m) and braking (around 6 m) phases accurately, validating the solver and physical parameters before moving on to more complex nonlinear cases.
 
 ---
@@ -51,7 +51,7 @@ The numerical model captures both the free-fall (from 54 m) and braking (around 
 ### 2.2 Monster Truck Suspension
 Here we verified solvers. Euler vs Euler-Cromer gave clear differences: Euler diverges, while Euler-Cromer preserves stable oscillations.
 
-- **Euler method** → diverges, energy not conserved.  
+- **Euler method** → diverges, energy not conserved.
 - **Euler–Cromer** → stable oscillations, energy preserved. 
 
 | ![Suspension Euler]({{ site.baseurl }}/images/suspension_euler.png) | ![Suspension Cromer]({{ site.baseurl }}/images/suspension_cromer.png) |
@@ -67,7 +67,7 @@ Finally, we compared the **numerical** solution of the small-angle pendulum dire
 For fine step sizes ($\Delta t = 0.01$), the agreement is excellent; the numerical curve tracks the analytical result almost exactly.  
 At larger steps ($\Delta t = 0.5$), however, numerical error grows dramatically — reaching about **54 %**.
 
-| <img src="{{ site.baseurl }}/images/verification_exact01.png" alt="Verification by exact measurement (error percentage)" width="80%"> | <img src="{{ site.baseurl }}/images/verification_exact02.png" alt="Verification by exact measurement (error percentage)" width="80%"> |
+| <img src="{{ site.baseurl }}/images/verification_exact01.png" alt="Verification by exact measurement (error percentage)"> | <img src="{{ site.baseurl }}/images/verification_exact02.png" alt="Verification by exact measurement (error percentage)"> |
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **Small time step (Δt = 0.01)** — minimal error, closely matches analytical solution. | **Large time step (Δt = 0.5)** — error ≈ 54 %, showing instability from coarse integration. |
 
@@ -87,7 +87,7 @@ This verification step builds confidence before applying the same methods to non
 
 ## 3. Linear vs Nonlinear Oscillators
 
-Before exploring forcing and bifurcations, it helps to compare **linear** and **nonlinear** oscillators.  
+Before exploring forcing and bifurcations, it helps to compare **linear** and **nonlinear** oscillators.
 This contrast highlights why nonlinear systems can behave so differently from their linear counterparts.
 
 ---
@@ -96,20 +96,20 @@ This contrast highlights why nonlinear systems can behave so differently from th
 
 We can compare the governing equations directly:
 
-- **Linear oscillator (simple harmonic motion):**  
+- **Linear oscillator (simple harmonic motion):**
   $$
   \ddot{x} + \omega^2 x = 0
   $$
-  - Produces clean sinusoidal motion.  
-  - Frequency is fixed and independent of amplitude.  
+  - Produces clean sinusoidal motion.
+  - Frequency is fixed and independent of amplitude.
 
-- **Nonlinear oscillator (with cubic stiffness term):**  
+- **Nonlinear oscillator (with cubic stiffness term):**
   $$
   \ddot{x} + \omega^2 x + \beta x^3 = 0
   $$
-  - Restoring force depends on amplitude.  
-  - Frequency shifts with amplitude.  
-  - Motion can distort, generate harmonics, or become unstable.  
+  - Restoring force depends on amplitude.
+  - Frequency shifts with amplitude.
+  - Motion can distort, generate harmonics, or become unstable.
 
 We can compare the governing equations directly:
 
@@ -119,8 +119,8 @@ We can compare the governing equations directly:
 | Clean sinusoidal motion                    | Frequency depends on amplitude               |
 | Fixed period, independent of amplitude     | Harmonics and distortions possible           |
 
-**Key difference:**  
-- **Linear oscillator** → guaranteed predictability, sinusoidal motion, frequency independent of amplitude.  
+**Key difference:**
+- **Linear oscillator** → guaranteed predictability, sinusoidal motion, frequency independent of amplitude.
 - **Nonlinear oscillator** → amplitude-dependent frequency, distorted oscillations, and the possibility of bifurcations and chaos.
 Linearity guarantees *predictability and simplicity*. Nonlinearity breaks this, opening the door to richer — and potentially chaotic — behaviour.
 
@@ -137,9 +137,9 @@ Linearity guarantees *predictability and simplicity*. Nonlinearity breaks this, 
 
 ### Test A: Linear Oscillator (γ = baseline)
 
-Simulation shows the textbook case:  
-- **Time series:** pure sinusoidal motion.  
-- **Phase plane:** a perfect closed ellipse.  
+Simulation shows the textbook case:
+- **Time series:** pure sinusoidal motion.
+- **Phase plane:** a perfect closed ellipse.
 - **Spectrum:** one sharp peak at 0.158 Hz (period 6.28
 
 | <img src="{{ site.baseurl }}/images/linear1.png" alt="Linear oscillator time series" width="80%"> |
@@ -150,9 +150,9 @@ Simulation shows the textbook case:
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | **Phase plane:** Perfect closed ellipse — hallmark of linear harmonic motion | **Spectrum:** Single sharp frequency peak at 0.158 Hz (period = 6.28 s) — no distortion or harmonics |
 
-- Results:  
-  - **Period = 6.28 s**  
-  - **Frequency = 0.158 Hz**  
+- Results:
+  - **Period = 6.28 s**
+  - **Frequency = 0.158 Hz**
 
 > **Summary**: The linear oscillator produces clean sinusoidal motion with a fixed period, independent of amplitude.
 
@@ -160,7 +160,7 @@ Simulation shows the textbook case:
 
 #### Test B: Nonlinear Oscillator — Soft Spring (β < 0)
 
-Here the restoring force weakens with displacement.  
+Here the restoring force weakens with displacement.
 
 | <img src="{{ site.baseurl }}/images/softspring01.png" alt="Soft spring time series" width="80%"> |
 |--------------------------------------------------------------------------------------------------|
@@ -170,12 +170,12 @@ Here the restoring force weakens with displacement.
 |--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | *Phase plane – elliptical orbit distorted by softening nonlinearity* | *Spectrum – harmonics and subharmonics present* |
 
-Results:  
-- **Time series:** longer oscillation period than the linear case.  
-- **Phase plane:** ellipse visibly distorted.  
+Results:
+- **Time series:** longer oscillation period than the linear case.
+- **Phase plane:** ellipse visibly distorted.
 - Spectrum: **two harmonics** appear, indicating distortion from sinusoidal motion.
-- Velocity range: **~0 to 1.4** (slightly reduced compared to linear ~0 to 1.5).  
-- Lower velocity → **longer period** than the linear case.  
+- Velocity range: **~0 to 1.4** (slightly reduced compared to linear ~0 to 1.5).
+- Lower velocity → **longer period** than the linear case.
 
 > **Summary**: The soft spring stretches the oscillation period and introduces harmonics.
 
@@ -193,12 +193,12 @@ Here the restoring force stiffens with displacement.
 |-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | *Phase plane – diamond-like orbit, showing stiffening effect* | *Spectrum – strong higher harmonics due to hardening* |
 
-Results:  
-- **Time series:** shorter period than the linear case.  
-- **Phase plane:** orbit sharpens into a diamond-like shape.  
+Results:
+- **Time series:** shorter period than the linear case.
+- **Phase plane:** orbit sharpens into a diamond-like shape.
 - **Spectrum:** higher harmonics appear strongly.
--  **shorter period**.
-- Velocity and frequency are both **greater** than in the linear case.  
+- **shorter period**.
+- Velocity and frequency are both **greater** than in the linear case.
 
 > **Summary**: The hard spring compresses the oscillation period and introduces harmonics.
 
@@ -214,9 +214,9 @@ Results:
 
 ### 3.3 Lessons from Linear vs Nonlinear Oscillators
 
-- **Linear systems**: predictable, fixed frequency, clean sinusoidal motion (6.28 s / 0.158 Hz).  
-- **Soft spring systems**: longer periods, lower velocities, harmonic distortion.  
-- **Hard spring systems**: shorter periods, higher velocities, harmonic distortion.  
+- **Linear systems**: predictable, fixed frequency, clean sinusoidal motion (6.28 s / 0.158 Hz).
+- **Soft spring systems**: longer periods, lower velocities, harmonic distortion.
+- **Hard spring systems**: shorter periods, higher velocities, harmonic distortion.
 
 This contrast sets the stage for later sections: once **forcing** is added (Section 4), nonlinear systems can undergo bifurcations and eventually chaos.
 
@@ -224,7 +224,7 @@ This contrast sets the stage for later sections: once **forcing** is added (Sect
 
 ## 4. Forced Oscillators & Chaos (Ueda’s Equation)
 
-So far we have compared linear and nonlinear oscillators under simple conditions.  
+So far we have compared linear and nonlinear oscillators under simple conditions.
 When we add **external forcing**, however, a new level of complexity emerges.
 
 One famous example is **Ueda’s equation**, a nonlinear forced oscillator that shows how periodic driving can create chaotic motion.
@@ -240,13 +240,13 @@ $$
 $$
 
 Where:
-- \(\delta\) — damping coefficient (dissipation).  
-- \(\beta\) — nonlinear stiffness coefficient (cubic restoring term).  
-- \(F\) — forcing amplitude.  
+- \(\delta\) — damping coefficient (dissipation).
+- \(\beta\) — nonlinear stiffness coefficient (cubic restoring term).
+- \(F\) — forcing amplitude.
 - \(\omega\) — driving angular frequency.
 
-**Why this matters:**  
-- The cubic term makes the restoring force amplitude-dependent.  
+**Why this matters:**
+- The cubic term makes the restoring force amplitude-dependent.
 - With periodic forcing, the system can:
   - lock onto the drive (period-1),
   - lock to a submultiple (subharmonic, e.g. period-2),
@@ -255,12 +255,12 @@ Where:
 ---
 
 #### How to detect behaviour numerically
-1. **Time series + FFT spectrum** — subharmonics appear at \(\omega/2, \omega/4,\dots\).  
-2. **Poincaré map** — sample \(x(t)\) every period \(T = 2\pi/\omega\).  
-   - Period-1 → one point.  
-   - Period-2 → two points.  
-   - Chaos → many scattered points.  
-3. **Phase plane** — closed loops for periodic motion, strange attractors for chaos.  
+1. **Time series + FFT spectrum** — subharmonics appear at \(\omega/2, \omega/4,\dots\).
+2. **Poincaré map** — sample \(x(t)\) every period \(T = 2\pi/\omega\).
+   - Period-1 → one point.
+   - Period-2 → two points.
+   - Chaos → many scattered points.
+3. **Phase plane** — closed loops for periodic motion, strange attractors for chaos.
 
 #### Example MATLAB/Octave code (general tool)
 
@@ -300,11 +300,11 @@ figure; plot(x_ss, xdot_ss); title('Phase plane');
 
 ### 4.2 Applying the Model (Your Simulation)
 
-Using the same equation, we performed simulations with increasing forcing amplitude \(F\).  
+Using the same equation, we performed simulations with increasing forcing amplitude \(F\).
 The results show the transition from periodic motion to subharmonics and eventually chaos.
 
-- **At low forcing (F small):** Periodic response, system locks to the drive.  
-- **At intermediate forcing:** Subharmonics appear — oscillations repeat only after 2T, 4T, …  
+- **At low forcing (F small):** Periodic response, system locks to the drive.
+- **At intermediate forcing:** Subharmonics appear — oscillations repeat only after 2T, 4T, …
 - **At high forcing:** Chaotic response with irregular time series and fractal Poincaré maps.
 
 | <img src="{{ site.baseurl }}/images/ueda1a.png" width="80%"> | <img src="{{ site.baseurl }}/images/ueda1b.png" width="80%"> |
@@ -319,22 +319,22 @@ The results show the transition from periodic motion to subharmonics and eventua
 |-------------------------|-------------------------|
 | *High forcing — time series: irregular oscillations.* | *High forcing — phase plane: chaotic attractor.* |
 
-> **Summary:**  
-> - Low forcing → clean periodic motion.  
-> - Moderate forcing → subharmonics and irregular loops.  
+> **Summary:**
+> - Low forcing → clean periodic motion.
+> - Moderate forcing → subharmonics and irregular loops.
 > - High forcing → chaotic attractor, deterministic but unpredictable.
 
 ---
 
 ### 4.3 Lessons from Ueda’s Oscillator
 
-Ueda’s equation shows how **external driving** interacts with **nonlinearity** to produce chaos.  
-This transition mirrors the behaviour we later observe in real systems like the **SkyMaster ride**, where forcing from motors translates into irregular — and potentially unsafe — motion.  
+Ueda’s equation shows how **external driving** interacts with **nonlinearity** to produce chaos.
+This transition mirrors the behaviour we later observe in real systems like the **SkyMaster ride**, where forcing from motors translates into irregular — and potentially unsafe — motion.
 
-Ueda’s model demonstrates how **forcing and nonlinearity combine** to generate chaos:  
-- Small forcing → stable periodic motion.  
-- Moderate forcing → subharmonic oscillations.  
-- Strong forcing → chaos.  
+Ueda’s model demonstrates how **forcing and nonlinearity combine** to generate chaos:
+- Small forcing → stable periodic motion.
+- Moderate forcing → subharmonic oscillations.
+- Strong forcing → chaos.
 
 **Takeaway:** Forcing is the **gateway to chaos**.
 
@@ -342,8 +342,8 @@ Ueda’s model demonstrates how **forcing and nonlinearity combine** to generate
 
 ## 5. Period-Doubling Bifurcations
 
-One of the most striking routes to chaos in nonlinear dynamics is the **period-doubling cascade**.  
-As the driving strength increases, oscillations progress from stable repetition into alternating cycles, doubling in complexity each time.  
+One of the most striking routes to chaos in nonlinear dynamics is the **period-doubling cascade**.
+As the driving strength increases, oscillations progress from stable repetition into alternating cycles, doubling in complexity each time.
 Eventually, this sequence leads to fully chaotic motion.
 
 ---
@@ -358,10 +358,10 @@ At low driving strength, the system exhibits **simple periodic motion**: the osc
 | ![Period 1 Spectrum]({{ site.baseurl }}/images/period1c.png) | ![Period 1 Return Map]({{ site.baseurl }}/images/period1d.png) |
 | **Spectrum:** Single sharp peak — pure periodic motion     | **Return map:** One fixed point — system repeats identically   |
 
-- **Time series**: Regular oscillation with a single amplitude.  
-- **Phase plane**: A single closed loop.  
-- **Spectrum**: Dominated by the fundamental frequency.  
-- **Return map**: One fixed point.  
+- **Time series**: Regular oscillation with a single amplitude.
+- **Phase plane**: A single closed loop.
+- **Spectrum**: Dominated by the fundamental frequency.
+- **Return map**: One fixed point.
 
 > **Summary**: The system is stable and repeats identically each cycle.
 
@@ -377,10 +377,10 @@ Increasing the drive produces the first **bifurcation**: oscillations alternate 
 | <img src="{{ site.baseurl }}/images/period2c.png" width="80%"> | <img src="{{ site.baseurl }}/images/period2d.png" width="80%">                            |
 | **Spectrum:** Additional frequency components appear (subharmonic)     | **Return map:** Two distinct points — system alternates between them   |
 
-- **Time series**: Two alternating amplitudes.  
-- **Phase plane**: The trajectory alternates between two loops.  
-- **Spectrum**: Peaks appear at half the fundamental frequency.  
-- **Return map**: Two distinct points.  
+- **Time series**: Two alternating amplitudes.
+- **Phase plane**: The trajectory alternates between two loops.
+- **Spectrum**: Peaks appear at half the fundamental frequency.
+- **Return map**: Two distinct points.
 
 > **Summary**: The first doubling — the system now needs two cycles to repeat.
 
@@ -396,9 +396,9 @@ Further increase in driving strength leads to another bifurcation: **Period-4 mo
 | <img src="{{ site.baseurl }}/images/period4c.png" width="80%"> | <img src="{{ site.baseurl }}/images/period4d.png" width="80%">                            |
 | **Spectrum:** Richer structure with more harmonics     | **Return map:** Four distinct points — system cycles through four states     |
 
-- **Time series**: Four distinct amplitudes before repeating.  
-- **Phase plane**: Four interwoven loops.  
-- **Spectrum**: New subharmonics appear.  
+- **Time series**: Four distinct amplitudes before repeating.
+- **Phase plane**: Four interwoven loops.
+- **Spectrum**: New subharmonics appear.
 
 > **Summary**: The doubling continues — repetition now requires four cycles.
 
@@ -415,9 +415,9 @@ At even stronger drive, the system exhibits **Period-8 behaviour**, the last sta
 | **Spectrum:** Broadband structure beginning to emerge     | **Return map:** Eight points converge toward a continuous band — onset of chaotic motion   |
 
 - **Time series**: Eight alternating amplitudes
-- **Phase plane**: Eight-fold structure in the trajectory.  
-- **Spectrum**: A dense cluster of peaks, precursors to chaos.  
-- **Return map**: Eight visited points.  
+- **Phase plane**: Eight-fold structure in the trajectory.
+- **Spectrum**: A dense cluster of peaks, precursors to chaos.
+- **Return map**: Eight visited points.
 
 > **Summary**: With repetition stretched to eight cycles, the system is on the verge of chaos.
 
@@ -425,7 +425,7 @@ At even stronger drive, the system exhibits **Period-8 behaviour**, the last sta
 
 ### 5.5 The Cascade and Feigenbaum’s Constant
 
-This doubling process (Period-1 → Period-2 → Period-4 → Period-8 → …) accelerates rapidly.  
+This doubling process (Period-1 → Period-2 → Period-4 → Period-8 → …) accelerates rapidly.
 The intervals between bifurcations shrink geometrically, converging toward the **Feigenbaum constant**:
 
 
@@ -444,7 +444,7 @@ $$
 This universal constant governs the rate at which period-doubling bifurcations accumulate, marking the onset of chaos in a wide range of nonlinear systems.
 
 
-**Feigenbaum’s Constant:**  
+**Feigenbaum’s Constant:**
 As the sequence accumulates, the ratio of bifurcation intervals converges to δ ≈ 4.669.
 
 ---
@@ -455,23 +455,23 @@ As the sequence accumulates, the ratio of bifurcation intervals converges to δ 
 
 ## 6. Extended Findings: The SkyMaster Ride
 
-To connect theory with the real world, we studied the **SkyMaster ride**, a fairground pendulum swing.  
-Despite its simplicity, the ride captures the essence of nonlinear dynamics and exhibits the same route to chaos observed in abstract models.  
+To connect theory with the real world, we studied the **SkyMaster ride**, a fairground pendulum swing.
+Despite its simplicity, the ride captures the essence of nonlinear dynamics and exhibits the same route to chaos observed in abstract models.
 Here, the consequences are not only theoretical but also practical — oscillations translate directly into the **forces experienced by riders**, raising important questions of **comfort and safety**.
 
 ---
 
 ### 6.1 Low-Amplitude Motion
 
-At small driving forces, the SkyMaster behaves like a nearly linear pendulum.  
+At small driving forces, the SkyMaster behaves like a nearly linear pendulum.
 Oscillations are smooth, regular, and close to sinusoidal.
 
 | ![]({{ site.baseurl }}/images/skymaster1a.png) | ![]({{ site.baseurl }}/images/skymaster1b.png) |
 |------------------------------|------------------------------|
 | *SkyMaster — low amplitude: smooth sinusoidal motion.* | *SkyMaster — higher amplitude: beginning of nonlinearity.* |
 
-- **Low amplitude**: Periodic motion with a clear repeating cycle.  
-- - **Higher amplitude:** Oscillations deviate from pure sinusoidal form, marking the onset of nonlinear behaviour.  
+- **Low amplitude**: Periodic motion with a clear repeating cycle.
+- - **Higher amplitude:** Oscillations deviate from pure sinusoidal form, marking the onset of nonlinear behaviour.
 
 > **Summary**: At low drive, the SkyMaster is stable and predictable, with forces well within safe limits.
 
@@ -479,14 +479,14 @@ Oscillations are smooth, regular, and close to sinusoidal.
 
 ### 6.2 Growing Nonlinearity
 
-As the driving energy increases, nonlinear effects dominate the system.  
+As the driving energy increases, nonlinear effects dominate the system.
 Oscillations grow in amplitude and complexity, while forces on riders become less predictable.
 
-![]({{ site.baseurl }}/images/skymaster1c.png)  
+![]({{ site.baseurl }}/images/skymaster1c.png)
 *SkyMaster — g-force profile showing rapid fluctuations.*
 
 - **G-force profile**: Riders experience rapidly varying forces, reflecting the system’s nonlinear response.
-- These fluctuations affect not only comfort but also **safety in ride design and operation**.  
+- These fluctuations affect not only comfort but also **safety in ride design and operation**.
 
 
 #### Example: Estimated g-force at higher drive
@@ -500,14 +500,14 @@ G = (ω² * r) / g
 
 For amplitude \(A = 4.0\):
 
-1. \(14.34 \times 14.34 = 205.6356\)  
-2. \(205.6356 \times 1.84 = 378.369504\)  
-3. \(378.369504 \times 0.57 = 215.67061728\)  
+1. \(14.34 \times 14.34 = 205.6356\)
+2. \(205.6356 \times 1.84 = 378.369504\)
+3. \(378.369504 \times 0.57 = 215.67061728\)
 4. \(215.67061728 \div 9.81 = 21.98\)
 
 **Result:** ≈ **22 G**
 
-> **Safety note:** This is *far beyond* normal human tolerance (amusement rides typically remain well under 5 G).  
+> **Safety note:** This is *far beyond* normal human tolerance (amusement rides typically remain well under 5 G).
 > Once nonlinear oscillations grow, the ride risks producing unsafe forces.
 
 > **Summary:** Strong nonlinearity drives forces outside safe margins, making design safeguards essential.
@@ -516,15 +516,15 @@ For amplitude \(A = 4.0\):
 
 ### 6.3 Rolling Chaotic Motion
 
-Beyond a critical threshold, the SkyMaster’s motion becomes irregular and unpredictable.  
+Beyond a critical threshold, the SkyMaster’s motion becomes irregular and unpredictable.
 Instead of smooth oscillations, the ride enters a state of **rolling chaotic motion**.
 
 | ![]({{ site.baseurl }}/images/skymaster1d.png) | ![]({{ site.baseurl }}/images/skymaster1e.png) |
 |------------------------------|------------------------------|
 | *Onset of chaos: motion becomes irregular.* | *Rolling chaotic motion: large, unpredictable swings.* |
 
-- **Onset of chaos:** Motion turns aperiodic, sensitive to small differences in starting conditions.  
-- **Rolling chaotic motion**: Large, irregular swings dominate, making long-term prediction impossible.  
+- **Onset of chaos:** Motion turns aperiodic, sensitive to small differences in starting conditions.
+- **Rolling chaotic motion**: Large, irregular swings dominate, making long-term prediction impossible.
 
 > **Summary**: **Summary:** At high drive, the SkyMaster becomes chaotic. Control is difficult and rider safety risks increase.
 
@@ -532,8 +532,8 @@ Instead of smooth oscillations, the ride enters a state of **rolling chaotic mot
 
 ### 6.4 From Theory to Experience
 
-The SkyMaster demonstrates how **nonlinear oscillators and chaos theory** are not confined to equations and simulations.  
-They manifest directly in mechanical systems — and in this case, in the **safety of real-world amusement rides**.  
+The SkyMaster demonstrates how **nonlinear oscillators and chaos theory** are not confined to equations and simulations.
+They manifest directly in mechanical systems — and in this case, in the **safety of real-world amusement rides**.
 Chaos here is not just abstract mathematics: it is something riders feel in their bodies.
 
 
@@ -541,59 +541,59 @@ Chaos here is not just abstract mathematics: it is something riders feel in thei
 
 ## 7. Chaos and Beyond
 
-Beyond Period-doubling, nonlinear systems reveal even more complex behaviour.  
-One striking feature is the **jump phenomenon**, where nonlinear resonance causes sudden amplitude shifts as system parameters change.  
+Beyond Period-doubling, nonlinear systems reveal even more complex behaviour.
+One striking feature is the **jump phenomenon**, where nonlinear resonance causes sudden amplitude shifts as system parameters change.
 
 To visualise the broader landscape, we use **bifurcation diagrams**, which map regions of stability, doubling, and chaos in a single view.
 
-![Bifurcation Diagram]({{ site.baseurl }}/images/bifurcation.png)  
+![Bifurcation Diagram]({{ site.baseurl }}/images/bifurcation.png)
 *Figure: Bifurcation diagram showing transitions from stable motion → doubling → chaos.*
 
 **Key insights from the diagram:**
-- **Stable regions**: predictable, repeating motion.  
-- **Period-doubling cascades**: each bifurcation doubles complexity.  
-- **Chaotic windows**: irregular, sensitive to initial conditions.  
-- **Intermittency**: stable “islands” of order reappear within chaotic regimes.  
+- **Stable regions**: predictable, repeating motion.
+- **Period-doubling cascades**: each bifurcation doubles complexity.
+- **Chaotic windows**: irregular, sensitive to initial conditions.
+- **Intermittency**: stable “islands” of order reappear within chaotic regimes.
 
 ---
 
-**Summary:**  
+**Summary:**
 Period-doubling is only one path into chaos. Nonlinear systems can jump, wander, and mix stability with unpredictability, creating a rich and intricate dynamical landscape.
 
 ---
 
 ## 8. Conclusion
 
-The journey from simple oscillations to chaos reveals a universal story in nonlinear dynamics.  
-Through successive bifurcations, stable motion doubles in complexity until it becomes chaotic — a process governed by the **Feigenbaum constant** (δ ≈ 4.669).  
+The journey from simple oscillations to chaos reveals a universal story in nonlinear dynamics.
+Through successive bifurcations, stable motion doubles in complexity until it becomes chaotic — a process governed by the **Feigenbaum constant** (δ ≈ 4.669).
 This constant is not just a mathematical curiosity but a marker of universality: it appears in many different systems, from equations on paper to machines in motion.
 
-In the controlled setting of simulations, Period-doubling highlights the elegance of nonlinear mathematics.  
-But in real-world systems — like the **SkyMaster ride** — these same dynamics carry direct consequences.  
-As the drive grows, oscillations amplify, g-forces spike, and motion slips into **rolling chaotic motion**.  
+In the controlled setting of simulations, Period-doubling highlights the elegance of nonlinear mathematics.
+But in real-world systems — like the **SkyMaster ride** — these same dynamics carry direct consequences.
+As the drive grows, oscillations amplify, g-forces spike, and motion slips into **rolling chaotic motion**.
 At this stage, prediction and control become unreliable, and what begins as an abstract route to chaos becomes a **safety challenge** for engineering.
 
-> **Key message:** Chaos is not only a mathematical destination but also a human experience.  
+> **Key message:** Chaos is not only a mathematical destination but also a human experience.
 > The Feigenbaum constant links theory to practice, showing how universal dynamics shape both the behaviour of equations and the safety of rides.
 
-Ultimately, studying Period-doubling gives us two perspectives:  
-- A **theoretical lens**, where universality and constants reveal the hidden order of chaos.  
+Ultimately, studying Period-doubling gives us two perspectives:
+- A **theoretical lens**, where universality and constants reveal the hidden order of chaos.
 - A **practical lens**, where oscillations and g-forces remind us that real systems — and real people — live with the consequences of nonlinear motion.
 
 
 ### Key Takeaways
 
-- We began with **simple oscillators**, verified with analytical comparisons.  
-- Introduced **nonlinear springs** and saw amplitude-dependent dynamics.  
+- We began with **simple oscillators**, verified with analytical comparisons.
+- Introduced **nonlinear springs** and saw amplitude-dependent dynamics.
 - Added **forcing**, which opened the door to bifurcations and chaos.
-- Verification steps ensured our models matched reality.  
+- Verification steps ensured our models matched reality.
 - Applications like the Skymaster ride show that chaos is not just theoretical: it has real engineering and safety implications.
-- Observed the **period-doubling cascade**, culminating in chaotic behaviour.  
+- Observed the **period-doubling cascade**, culminating in chaotic behaviour.
 - Applied the theory to the **SkyMaster ride**, where chaos becomes a matter of safety, not just theory.
 
 
 
-**Final message:**  
+**Final message:**
 
 
 For a lighter introduction, check the [overview site](https://oospakooysa.github.io/period-doubling/). For those who want the deep dive—you just read it.

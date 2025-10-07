@@ -264,8 +264,10 @@ simulated function Tick(float DeltaTime) {
   </video>
 </div>
 
-
+<!---
 ![Skymaster simulation render]({{ site.baseurl }}/images/skymaster.png)
+--->
+
 *Figure 4. Skymaster simulation in UDK showing chaotic swing dynamics.*
 
 

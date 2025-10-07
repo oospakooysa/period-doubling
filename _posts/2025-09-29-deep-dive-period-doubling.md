@@ -625,3 +625,8 @@ For a lighter introduction, check the [overview site](https://oospakooysa.github
 ---
 
 *Figures and data from Octave, UDK, Webots, and detailed analysis in the original Physics study.*
+
+---
+
+[⬅ Back to Landing Page]({{ site.baseurl }}/index.html) | [🔗 Back to Repo Root](https://github.com/oospakooysa/period-doubling)
+

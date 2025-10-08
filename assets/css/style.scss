@@ -1,0 +1,103 @@
+---
+# Only the front matter dashes are required for Jekyll to process this file
+---
+
+@import "jekyll-theme-cayman";
+
+/* ============================================================
+   🌗  Custom Dark/Light Mode Styles (overrides Cayman)
+   ============================================================ */
+
+/* Default (light mode) */
+:root {
+  --background-color: #ffffff;
+  --text-color: #0a0a0a;
+  --link-color: #0366d6;
+  --code-bg: #f6f8fa;
+  --border-color: #d0d7de;
+}
+
+/* Dark mode via system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #0d1117;
+    --text-color: #e6edf3;
+    --link-color: #58a6ff;
+    --code-bg: #161b22;
+    --border-color: #30363d;
+  }
+}
+
+/* Manual overrides (via toggle) */
+html[data-theme='dark'] {
+  --background-color: #0d1117;
+  --text-color: #e6edf3;
+  --link-color: #58a6ff;
+  --code-bg: #161b22;
+  --border-color: #30363d;
+}
+html[data-theme='light'] {
+  --background-color: #ffffff;
+  --text-color: #0a0a0a;
+  --link-color: #0366d6;
+  --code-bg: #f6f8fa;
+  --border-color: #d0d7de;
+}
+
+/* Apply theme variables to Cayman layout elements */
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+a {
+  color: var(--link-color);
+  transition: color 0.3s;
+}
+
+pre, code {
+  background: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+/* Navbar and page header overrides */
+.page-header {
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.project-name, .project-tagline {
+  color: var(--text-color);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--code-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, transform 0.1s;
+  z-index: 9999;
+}
+#theme-toggle:active { transform: scale(0.95); }
+
+#theme-toggle svg { width: 22px; height: 22px; }
+
+/* SVG sun/moon animation */
+#theme-toggle .sun { transition: transform .35s, opacity .25s; transform-origin: center; }
+#theme-toggle .moon { transition: transform .35s, opacity .25s; transform-origin: center; opacity: 0; }
+#theme-toggle.is-dark .sun { transform: scale(0.4); opacity: 0; }
+#theme-toggle.is-dark .moon { transform: scale(1); opacity: 1; }
+

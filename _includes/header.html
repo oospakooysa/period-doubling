@@ -1,12 +1,8 @@
-
-<!-- Theme toggle button: drop into your _includes/header.html (or directly in your layout) -->
-<button id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
-  <!-- Animated sun + moon SVG (simple, lightweight) -->
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <!-- Sun (circle + rays) -->
+<button id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
     <g class="sun" fill="none" stroke="currentColor" stroke-width="1.4">
       <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
-      <g stroke="currentColor" stroke-linecap="round">
+      <g stroke-linecap="round">
         <line x1="12" y1="1" x2="12" y2="3"></line>
         <line x1="12" y1="21" x2="12" y2="23"></line>
         <line x1="1" y1="12" x2="3" y2="12"></line>
@@ -17,13 +13,9 @@
         <line x1="4.2" y1="19.8" x2="5.8" y2="18.2"></line>
       </g>
     </g>
-
-    <!-- Moon (crescent) -->
-    <g class="moon" fill="currentColor" opacity="0">
+    <g class="moon" fill="currentColor">
       <path d="M21 12.3A8.3 8.3 0 1 1 11.7 3 6.3 6.3 0 0 0 21 12.3z"></path>
     </g>
   </svg>
 </button>
 
-<!-- Optional small hint text (unobtrusive) -->
-<span class="theme-hint" aria-hidden="true">Theme: system by default — toggle to override</span>

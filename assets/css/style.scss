@@ -229,5 +229,38 @@ figcaption {
 }
 
 /* ============================================================
-   End of file
+   Legacy Rouge / Inline Code Compatibility (older posts)
    ============================================================ */
+
+/* Older pre/code combinations without .highlight */
+pre code.highlighter-rouge,
+div.highlighter-rouge pre {
+  background-color: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+/* Inline code from older markdown renderers */
+code.highlighter-rouge {
+  background-color: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px;
+  padding: 0.15rem 0.3rem;
+}
+
+/* Reset overlapping background layers */
+.highlighter-rouge span {
+  background: none !important;
+  text-shadow: none !important;
+}
+
+/* Dark mode shadow */
+html[data-theme='dark'] pre code.highlighter-rouge,
+html[data-theme='dark'] div.highlighter-rouge pre {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

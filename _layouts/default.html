@@ -32,6 +32,31 @@
         <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
       {% endif %}
     </footer>
+    
+<script>
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+
+  const saved = localStorage.getItem('theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  function apply(theme, save=true) {
+    document.documentElement.dataset.theme = theme;
+    toggle.classList.toggle('is-dark', theme === 'dark');
+    toggle.setAttribute('aria-pressed', theme === 'dark');
+    if (save) localStorage.setItem('theme', theme);
+  }
+
+  apply(saved || (systemDark ? 'dark' : 'light'), false);
+
+  toggle.addEventListener('click', () => {
+    const current = document.documentElement.dataset.theme;
+    apply(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
+
 
     {% include mathjax.html %}
   </body>

@@ -38,29 +38,27 @@
     </footer>
 -->
     
-<script>
-(function() {
-  const toggle = document.getElementById('theme-toggle');
-  if (!toggle) return;
+    <!-- Theme toggle logic -->
+    <script>
+    (function() {
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
 
-  const saved = localStorage.getItem('theme');
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  function apply(theme, save=true) {
-    document.documentElement.dataset.theme = theme;
-    toggle.classList.toggle('is-dark', theme === 'dark');
-    toggle.setAttribute('aria-pressed', theme === 'dark');
-    if (save) localStorage.setItem('theme', theme);
-  }
+      function apply(theme, save=true) {
+        document.documentElement.dataset.theme = theme;
+        toggle.classList.toggle('is-dark', theme === 'dark');
+        toggle.setAttribute('aria-pressed', theme === 'dark');
+        if (save) localStorage.setItem('theme', theme);
+      }
 
-  apply(saved || (systemDark ? 'dark' : 'light'), false);
+      apply(saved || (systemDark ? 'dark' : 'light'), false);
 
-  toggle.addEventListener('click', () => {
-    const current = document.documentElement.dataset.theme;
-    apply(current === 'dark' ? 'light' : 'dark');
-  });
-})();
-</script>
+      toggle.addEventListener('click', () => {
+        const current = document.documentElement.dataset.theme;
+        apply(current === 'dark' ? 'light' : 'dark');
 
 
     {% include mathjax.html %}

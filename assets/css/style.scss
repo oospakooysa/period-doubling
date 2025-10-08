@@ -1,14 +1,14 @@
 ---
-# Only the front matter dashes are required for Jekyll to process this file
+# Required front matter so Jekyll processes SCSS
 ---
 
 @import "jekyll-theme-cayman";
 
 /* ============================================================
-   🌗  Custom Dark/Light Mode Styles (overrides Cayman)
+   🌗  Custom Light/Dark Theme Overrides for Period Doubling
    ============================================================ */
 
-/* Default (light mode) */
+/* ---------- Light Theme Defaults ---------- */
 :root {
   --background-color: #ffffff;
   --text-color: #0a0a0a;
@@ -17,7 +17,7 @@
   --border-color: #d0d7de;
 }
 
-/* Dark mode via system preference */
+/* ---------- System Dark Mode Defaults ---------- */
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #0d1117;
@@ -28,14 +28,15 @@
   }
 }
 
-/* Manual overrides (via toggle) */
+/* ---------- Manual Toggle Overrides ---------- */
 html[data-theme='dark'] {
   --background-color: #0d1117;
   --text-color: #e6edf3;
   --link-color: #58a6ff;
-  --code-bg: #161b22;
+  --code-bg: #0f141b; /* slightly deeper for clarity */
   --border-color: #30363d;
 }
+
 html[data-theme='light'] {
   --background-color: #ffffff;
   --text-color: #0a0a0a;
@@ -44,36 +45,36 @@ html[data-theme='light'] {
   --border-color: #d0d7de;
 }
 
-/* Apply theme variables to Cayman layout elements */
+/* ============================================================
+   Base Elements
+   ============================================================ */
+
 body {
   background: var(--background-color);
   color: var(--text-color);
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 a {
   color: var(--link-color);
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
-pre, code {
-  background: var(--code-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-}
-
-/* Navbar and page header overrides */
 .page-header {
   background-color: var(--background-color);
   border-bottom: 1px solid var(--border-color);
   color: var(--text-color);
 }
 
-.project-name, .project-tagline {
+.project-name,
+.project-tagline {
   color: var(--text-color);
 }
 
-/* Theme toggle button */
+/* ============================================================
+   🌞 / 🌙  Theme Toggle Button
+   ============================================================ */
+
 #theme-toggle {
   position: fixed;
   top: 1rem;
@@ -88,22 +89,62 @@ pre, code {
   background: var(--code-bg);
   color: var(--text-color);
   cursor: pointer;
-  transition: background 0.25s, color 0.25s, transform 0.1s;
   z-index: 9999;
+  transition: background 0.25s, color 0.25s, transform 0.1s;
 }
-#theme-toggle:active { transform: scale(0.95); }
 
-#theme-toggle svg { width: 22px; height: 22px; }
+#theme-toggle:active {
+  transform: scale(0.95);
+}
 
-/* SVG sun/moon animation */
-#theme-toggle .sun { transition: transform .35s, opacity .25s; transform-origin: center; }
-#theme-toggle .moon { transition: transform .35s, opacity .25s; transform-origin: center; opacity: 0; }
-#theme-toggle.is-dark .sun { transform: scale(0.4); opacity: 0; }
-#theme-toggle.is-dark .moon { transform: scale(1); opacity: 1; }
+#theme-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+#theme-toggle .sun {
+  transition: transform 0.35s, opacity 0.25s;
+  transform-origin: center;
+}
+
+#theme-toggle .moon {
+  transition: transform 0.35s, opacity 0.25s;
+  transform-origin: center;
+  opacity: 0;
+}
+
+#theme-toggle.is-dark .sun {
+  transform: scale(0.4);
+  opacity: 0;
+}
+
+#theme-toggle.is-dark .moon {
+  transform: scale(1);
+  opacity: 1;
+}
 
 /* ============================================================
-   Code block and math background adaptation
+   🧮  Code Blocks, Inline Code, and Math Styling
    ============================================================ */
+
+/* Base block style */
+.highlight,
+.rouge,
+pre.highlight,
+pre code {
+  position: relative;
+  display: block;
+  background-color: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+  text-shadow: none !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 /* Inline code */
 code {
@@ -112,85 +153,81 @@ code {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 0.15rem 0.3rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Block code fences */
-pre {
-  background-color: var(--code-bg);
-  color: var(--text-color);
+/* Reset layered colours that caused overlap */
+.highlight span,
+.rouge span,
+pre code span {
+  background: none !important;
+  text-shadow: none !important;
+}
+
+/* Syntax highlight readability boost */
+.highlight .k,
+.rouge .k {
+  color: #c792ea; /* keywords */
+}
+.highlight .s,
+.rouge .s {
+  color: #9ecbff; /* strings */
+}
+.highlight .m,
+.rouge .m {
+  color: #ffab70; /* numbers */
+}
+.highlight .c,
+.rouge .c {
+  color: #8b949e; /* comments */
+}
+
+/* Dark mode tuning for syntax */
+html[data-theme='dark'] .highlight .k,
+html[data-theme='dark'] .rouge .k {
+  color: #b392ff;
+}
+html[data-theme='dark'] .highlight .s,
+html[data-theme='dark'] .rouge .s {
+  color: #9ae6b4;
+}
+html[data-theme='dark'] .highlight .m,
+html[data-theme='dark'] .rouge .m {
+  color: #ffab70;
+}
+html[data-theme='dark'] .highlight .c,
+html[data-theme='dark'] .rouge .c {
+  color: #8b949e;
+}
+
+/* Shadow in dark mode for depth */
+html[data-theme='dark'] pre,
+html[data-theme='dark'] .highlight {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   Tables and Figure Captions (optional cleanup)
+   ============================================================ */
+
+table {
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 1rem;
-  overflow-x: auto;
-  transition: background-color 0.3s, color 0.3s;
+  border-collapse: collapse;
 }
 
-/* Syntax highlight colours (optional: subtle adjustment) */
-pre code {
+th,
+td {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.8rem;
+}
+
+figcaption {
   color: var(--text-color);
+  font-size: 0.9rem;
+  opacity: 0.85;
+  text-align: center;
+  margin-top: 0.3rem;
 }
 
-/* Add slight visual cue for light/dark */
-@media (prefers-color-scheme: dark) {
-  pre {
-    box-shadow: 0 0 0 1px var(--border-color), 0 4px 8px rgba(0,0,0,0.25);
-  }
-}
-
-
-
-
-/* ---------- force code & math blocks to follow theme variables ---------- */
-/* place this at EOF of assets/css/style.scss so it loads last */
-
-pre,
-pre[class*="language-"],
-pre[class^="language-"],
-code,
-code[class*="language-"],
-code[class^="language-"],
-.highlight,
-.highlight pre,
-.rouge,
-.rouge pre,
-.katex,
-.katex-display,
-.math,
-.mjs-code {
-  background-color: var(--code-bg) !important;
-  color: var(--text-color) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
-  padding: 0.85rem 1rem !important;
-  overflow-x: auto !important;
-  transition: background-color 0.25s ease, color 0.25s ease !important;
-}
-
-/* inline code */
-code:not(pre code) {
-  padding: 0.12rem 0.30rem !important;
-  border-radius: 4px !important;
-  font-size: 0.95em !important;
-}
-
-/* ensure code elements inside tables get box styling */
-td pre, th pre { padding: 0.5rem !important; }
-
-/* If Rouge / theme adds very specific selectors, cover them too */
-div.highlight, div.highlight pre, .highlight > pre {
-  background: var(--code-bg) !important;
-  color: var(--text-color) !important;
-  border-color: var(--border-color) !important;
-}
-
-/* Katex/MathJax tweaks so displayed equations also match */
-.katex, .katex-display, .MathJax_Display, .math.display {
-  background: transparent; /* let outer pre handle background if present */
-  color: var(--text-color) !important;
-}
-
-/* small visual lift in dark mode */
-@media (prefers-color-scheme: dark) {
-  pre, .highlight, .rouge { box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
-}
+/* ============================================================
+   End of file
+   ============================================================ */

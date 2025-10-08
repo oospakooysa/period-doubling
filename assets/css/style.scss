@@ -139,3 +139,58 @@ pre code {
 }
 
 
+
+
+/* ---------- force code & math blocks to follow theme variables ---------- */
+/* place this at EOF of assets/css/style.scss so it loads last */
+
+pre,
+pre[class*="language-"],
+pre[class^="language-"],
+code,
+code[class*="language-"],
+code[class^="language-"],
+.highlight,
+.highlight pre,
+.rouge,
+.rouge pre,
+.katex,
+.katex-display,
+.math,
+.mjs-code {
+  background-color: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  padding: 0.85rem 1rem !important;
+  overflow-x: auto !important;
+  transition: background-color 0.25s ease, color 0.25s ease !important;
+}
+
+/* inline code */
+code:not(pre code) {
+  padding: 0.12rem 0.30rem !important;
+  border-radius: 4px !important;
+  font-size: 0.95em !important;
+}
+
+/* ensure code elements inside tables get box styling */
+td pre, th pre { padding: 0.5rem !important; }
+
+/* If Rouge / theme adds very specific selectors, cover them too */
+div.highlight, div.highlight pre, .highlight > pre {
+  background: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Katex/MathJax tweaks so displayed equations also match */
+.katex, .katex-display, .MathJax_Display, .math.display {
+  background: transparent; /* let outer pre handle background if present */
+  color: var(--text-color) !important;
+}
+
+/* small visual lift in dark mode */
+@media (prefers-color-scheme: dark) {
+  pre, .highlight, .rouge { box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+}

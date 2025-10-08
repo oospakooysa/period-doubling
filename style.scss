@@ -1,0 +1,128 @@
+
+/* === Main site stylesheet (drop into your repo as `style.scss` or append to your existing file) ===
+   This file contains the theme variables, system auto-detection, and manual-toggle overrides.
+   If you already have a style.scss, you can append the contents of the `/* DARKMODE START */` ... `/* DARKMODE END */`
+   block at the end instead of replacing the whole file.
+*/
+
+/* ---------- site base rules (retain your existing site rules above this line) ---------- */
+
+/* ====== DARKMODE START ====== */
+/* Default (light mode) */
+:root {
+  --background-color: #ffffff;
+  --text-color: #0a0a0a;
+  --link-color: #0366d6;
+  --code-bg: #f6f8fa;
+  --border-color: #d0d7de;
+  --muted-color: #6e7781;
+}
+
+/* Dark mode via system preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #0d1117;
+    --text-color: #e6edf3;
+    --link-color: #58a6ff;
+    --code-bg: #161b22;
+    --border-color: #30363d;
+    --muted-color: #94a3b8;
+  }
+}
+
+/* Manual override (user toggle) */
+html[data-theme='dark'] {
+  --background-color: #0d1117;
+  --text-color: #e6edf3;
+  --link-color: #58a6ff;
+  --code-bg: #161b22;
+  --border-color: #30363d;
+  --muted-color: #94a3b8;
+}
+
+html[data-theme='light'] {
+  --background-color: #ffffff;
+  --text-color: #0a0a0a;
+  --link-color: #0366d6;
+  --code-bg: #f6f8fa;
+  --border-color: #d0d7de;
+  --muted-color: #6e7781;
+}
+
+/* Apply variables to elements (these are safe defaults; your theme likely already styles these) */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+a {
+  color: var(--link-color);
+  transition: color 0.22s ease;
+}
+
+code, pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.15rem 0.3rem;
+  transition: background-color 0.22s ease, border-color 0.22s ease;
+}
+
+/* Slight dimming for images in dark mode to reduce glare */
+img {
+  max-width: 100%;
+}
+
+/* Theme toggle button styles */
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--code-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(2,6,23,0.08);
+  transition: background-color 0.22s ease, color 0.22s ease, transform 0.12s ease;
+}
+#theme-toggle:active { transform: scale(0.98); }
+#theme-toggle:focus { outline: 3px solid rgba(88,166,255,0.18); outline-offset: 2px; }
+
+/* Animated SVG styles inside button */
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+/* The sun / moon shapes are toggled by adding .is-dark to the button */
+#theme-toggle .sun { transform-origin: 50% 50%; transition: transform 0.35s ease, opacity 0.25s ease; }
+#theme-toggle .moon { transform-origin: 50% 50%; transition: transform 0.35s ease, opacity 0.25s ease; }
+
+#theme-toggle.is-dark .sun { transform: scale(0.4); opacity: 0; }
+#theme-toggle.is-dark .moon { transform: scale(1); opacity: 1; }
+
+#theme-toggle:not(.is-dark) .sun { transform: scale(1); opacity: 1; }
+#theme-toggle:not(.is-dark) .moon { transform: scale(0.4); opacity: 0; }
+
+/* Small helper for preference hint (optional) */
+.theme-hint {
+  position: fixed;
+  right: 1rem;
+  top: 4.6rem;
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  background: transparent;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* ====== DARKMODE END ====== */

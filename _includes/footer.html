@@ -1,0 +1,64 @@
+
+<!-- Theme toggle logic: drop into your _includes/footer.html (before </body>) -->
+<script>
+(function() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+
+  const hint = document.querySelector('.theme-hint');
+  const stored = localStorage.getItem('theme'); // 'dark' or 'light'
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Helper: set theme and update button state
+  function applyTheme(theme, save=true) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (save) localStorage.setItem('theme', theme);
+    const isDark = theme === 'dark';
+    toggle.classList.toggle('is-dark', isDark);
+    toggle.setAttribute('aria-pressed', String(isDark));
+    toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    // update hint if present
+    if (hint) hint.textContent = isDark ? 'Theme: dark (manual)' : 'Theme: light (manual)';
+    // set a friendly icon label
+    toggle.innerHTML = toggle.innerHTML; // noop to keep SVG; leave SVG as-is
+  }
+
+  // Initialize theme:
+  if (stored === 'dark' || stored === 'light') {
+    applyTheme(stored, false);
+  } else {
+    applyTheme(systemPrefersDark ? 'dark' : 'light', false);
+    if (hint) hint.textContent = 'Theme: system (auto)';
+  }
+
+  // Listen for system preference changes (but only if user hasn't set a manual preference)
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  mediaQuery.addEventListener && mediaQuery.addEventListener('change', e => {
+    const saved = localStorage.getItem('theme');
+    if (saved) return; // user has manual choice
+    applyTheme(e.matches ? 'dark' : 'light', false);
+    if (hint) hint.textContent = 'Theme: system (auto)';
+  });
+
+  // Toggle on click
+  toggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next, true);
+  });
+
+  // Keyboard support: Space / Enter toggles
+  toggle.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      toggle.click();
+    }
+  });
+
+  // Ensure toggle shows correct visual state on page load
+  const initialTheme = document.documentElement.getAttribute('data-theme');
+  toggle.classList.toggle('is-dark', initialTheme === 'dark');
+  toggle.setAttribute('aria-pressed', String(initialTheme === 'dark'));
+  if (hint && (!stored)) hint.textContent = 'Theme: system (auto)';
+})();
+</script>

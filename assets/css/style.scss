@@ -268,5 +268,18 @@ figcaption {
 }
 
 /* ============================================================
+   Override Cayman default for .main-content pre
+   ============================================================ */
+
+.main-content pre {
+  background-color: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* ============================================================
    End of file
    ============================================================ */

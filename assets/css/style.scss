@@ -185,6 +185,33 @@ figcaption {
   margin-top: 0.3rem;
 }
 
+/* Slightly brighter text inside dark-mode code blocks */
+html[data-theme='dark'] .main-content pre,
+html[data-theme='dark'] .main-content code {
+  color: #f0f6fc !important;
+}
+
+/* Ensure inline code within lists also switches correctly */
+.main-content li code {
+  background-color: var(--code-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.15rem 0.3rem;
+}
+
+/* Softer border tone for dark mode (less visual noise) */
+html[data-theme='dark'] .main-content pre,
+html[data-theme='dark'] .main-content code {
+  border-color: rgba(240, 246, 252, 0.15) !important;
+}
+
+/* Improved link hover visibility in dark mode */
+html[data-theme='dark'] a:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
 /* ============================================================
    End of file
    ============================================================ */

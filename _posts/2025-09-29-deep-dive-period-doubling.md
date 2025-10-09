@@ -135,11 +135,11 @@ Nonlinearity breaks this — opening the door to richer, amplitude-sensitive, an
 
 
 ---
-<!---
-![Placeholder: Linear vs Nonlinear equations side-by-side]({{ site.baseurl }}/images/linear_vs_nonlinear.png)
+
+![Placeholder: Linear vs Nonlinear equations side-by-side]({{ site.baseurl }}/images/suspension_cromer.png)
 
 *Figure: Conceptual comparison of the linear and nonlinear governing equations. The nonlinear case adds the cubic stiffness term, breaking superposition and introducing amplitude-dependent dynamics.*
---->
+
 
 ---
 

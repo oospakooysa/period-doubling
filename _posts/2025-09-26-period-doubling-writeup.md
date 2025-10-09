@@ -221,8 +221,9 @@ Plotting displacement vs. velocity reveals the shape of motion.
 - Simple oscillations → ellipses.  
 - Chaotic dynamics → strange attractors, folding like fractals.  
 
-![Chaotic phase portrait]({{ site.baseurl }}/images/chaotic_phase.png)  
-*Figure 4. Chaotic dynamics forming a strange attractor.*  
+<img src="{{ site.baseurl }}/images/chaotic_phase.png" alt="Chaotic phase portrait" width="70%" style="display: block; margin: 0 auto;">
+<p><em>Figure 4. Chaotic dynamics forming a strange attractor.</em></p>
+
 
 ---
 
@@ -230,8 +231,9 @@ Plotting displacement vs. velocity reveals the shape of motion.
 
 Chaos in the time domain:  
 
-![Chaotic time series]({{ site.baseurl }}/images/chaotic_timeseries.png)  
-*Figure 5. Chaotic time series of the Duffing oscillator.*  
+<img src="{{ site.baseurl }}/images/chaotic_timeseries.png" alt="Chaotic time series" width="80%">
+<p><em>Figure 5. Chaotic time series of the Duffing oscillator.</em></p>
+
 
 ---
 
